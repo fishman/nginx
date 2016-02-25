@@ -7,17 +7,29 @@ server {
 
 {% for k,v in item.server.iteritems() %}
 {% if k.find('location') == -1 and k != 'file_name' %}
-{{ k }} {{ v }};
+  {{ k }} {{ v }};
 {% endif %}
 {% endfor %} 
 
 {% for k,v in item.server.iteritems() if k.find('location') != -1 %}
   location {{ v.name }} {
 {% for x,y in v.iteritems() if x != 'name' and x != 'if' %} 
+  {% if y is string %}
       {{ x }} {{ y }};
+  {% else %}
+    {% for z in y %}
+      {{ x }} {{ z }};
+    {% endfor %}
+  {% endif %}
 {% endfor %}
 {% for x,y in v.iteritems() if x == 'if' %} 
-      {{ x }} {{ y }}
+  {% if y is string %}
+      {{ x }} {{ y }};
+  {% else %}
+    {% for z in y %}
+      {{ x }} {{ z }};
+    {% endfor %}
+  {% endif %}
 {% endfor %}
   }
 {% endfor %}
