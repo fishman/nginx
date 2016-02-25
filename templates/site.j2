@@ -24,10 +24,10 @@ server {
 {% endfor %}
 {% for x,y in v.iteritems() if x == 'if' %} 
   {% if y is string %}
-      {{ x }} {{ y }};
+      {{ x }} {{ y }}
   {% else %}
     {% for z in y %}
-      {{ x }} {{ z }};
+      {{ x }} {{ z }}
     {% endfor %}
   {% endif %}
 {% endfor %}
