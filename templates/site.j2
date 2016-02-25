@@ -13,8 +13,11 @@ server {
 
 {% for k,v in item.server.iteritems() if k.find('location') != -1 %}
   location {{ v.name }} {
-{% for x,y in v.iteritems() if x != 'name' %} 
+{% for x,y in v.iteritems() if x != 'name' and x != 'if' %} 
       {{ x }} {{ y }};
+{% endfor %}
+{% for x,y in v.iteritems() if x == 'if' %} 
+      {{ x }} {{ y }}
 {% endfor %}
   }
 {% endfor %}

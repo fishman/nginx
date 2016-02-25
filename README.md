@@ -11,6 +11,18 @@ Requirements
 This role requires Ansible 1.4 or higher and platform requirements are listed
 in the metadata file.
 
+Installation
+--------------
+
+Put that into your requirements.yml
+
+```
+- src: https://github.com/pawelniewie/ansible-nginx-role
+  name: nginx
+```
+
+Then run `ansible-galaxy install -r requirements.yml`
+
 Role Variables
 --------------
 
